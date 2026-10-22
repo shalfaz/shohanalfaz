@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Shohan Hossain Alfaz | Full-Stack Web Developer",
+  title: "Shohan Hossain Alfaz | Junior Full-Stack Web Developer",
   description:
     "Portfolio of Shohan Hossain Alfaz, a junior full-stack web developer and CSE student at ULAB in Dhaka, Bangladesh.",
 };

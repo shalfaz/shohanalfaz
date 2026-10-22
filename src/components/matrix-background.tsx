@@ -2,6 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
+type RainColumn = {
+  headY: number;
+  speed: number;
+  brightness: number;
+  glyphs: string[];
+};
+
 export function MatrixBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -11,52 +18,98 @@ export function MatrixBackground() {
     if (!canvas || !context) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const characters = "010101001101001010101100101";
     let frame = 0;
-    let drops: number[] = [];
+    let columns: RainColumn[] = [];
     let width = 0;
     let height = 0;
+    let fontSize = 15;
+    let columnGap = 27;
+    let glyphGap = 27;
+    let frameInterval = 40;
     let lastFrame = 0;
-    const fontSize = 15;
-    const characters = "010101001101001010101100101";
-    const visibility = document.visibilityState;
+    let lastDraw = 0;
+
+    const makeColumn = (headY: number): RainColumn => ({
+      headY,
+      speed: 17 + Math.random() * 17,
+      brightness: 0.62 + Math.random() * 0.3,
+      glyphs: Array.from(
+        { length: 5 + Math.floor(Math.random() * 5) },
+        () => characters[Math.floor(Math.random() * characters.length)],
+      ),
+    });
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const mobile = window.matchMedia("(max-width: 650px)").matches;
+      const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.25);
       width = window.innerWidth;
       height = window.innerHeight;
+      fontSize = 15;
+      columnGap = mobile ? 31 : 27;
+      glyphGap = fontSize * 1.8;
+      frameInterval = mobile ? 52 : 40;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      columns = Array.from(
+        { length: Math.ceil(width / columnGap) },
+        () => makeColumn(Math.random() * (height + glyphGap * 8)),
+      );
+      lastDraw = 0;
+      paintBackground();
+    };
+
+    const paintBackground = () => {
+      context.globalAlpha = 1;
+      context.shadowBlur = 0;
       context.fillStyle = "#080B0A";
       context.fillRect(0, 0, width, height);
-      drops = Array.from({ length: Math.ceil(width / fontSize) }, () => Math.random() * -40);
     };
 
     const draw = (timestamp: number) => {
-      if (document.visibilityState !== "visible") {
+      if (document.visibilityState !== "visible" || reducedMotion.matches) {
         frame = 0;
         return;
       }
-      if (timestamp - lastFrame < 42) {
+      if (timestamp - lastFrame < frameInterval) {
         frame = window.requestAnimationFrame(draw);
         return;
       }
-      lastFrame = timestamp;
-      context.fillStyle = "rgba(8, 11, 10, 0.13)";
-      context.fillRect(0, 0, width, height);
-      context.font = `${fontSize}px monospace`;
 
-      drops.forEach((drop, column) => {
-        const char = characters[Math.floor(Math.random() * characters.length)];
-        const x = column * fontSize;
-        const y = drop * fontSize;
-        context.fillStyle = Math.random() > 0.985 ? "#65A9FF" : "rgba(57, 255, 136, 0.54)";
-        context.fillText(char, x, y);
-        if (y > height && Math.random() > 0.972) drops[column] = 0;
-        else drops[column] = drop + 0.55;
+      const delta = lastDraw ? Math.min(timestamp - lastDraw, 80) / 1000 : frameInterval / 1000;
+      lastDraw = timestamp;
+      lastFrame = timestamp;
+      paintBackground();
+      context.font = `600 ${fontSize}px monospace`;
+      context.textBaseline = "top";
+      context.shadowColor = "#39FF88";
+
+      columns.forEach((column, index) => {
+        const x = Math.round(index * columnGap);
+        column.glyphs.forEach((character, glyphIndex) => {
+          const y = Math.round(column.headY - glyphIndex * glyphGap);
+          if (y < -fontSize || y > height) return;
+
+          const tailBrightness = 1 - glyphIndex / (column.glyphs.length + 1);
+          context.globalAlpha = column.brightness * (0.38 + tailBrightness * 0.62);
+          context.fillStyle = glyphIndex === 0 ? "#9CFFB9" : "#39FF88";
+          context.shadowBlur = glyphIndex === 0 ? 4 : 1;
+          context.fillText(character, x, y);
+        });
+
+        column.headY += column.speed * delta;
+        if (column.headY - column.glyphs.length * glyphGap > height) {
+          const nextColumn = makeColumn(0);
+          nextColumn.headY = -Math.random() * nextColumn.glyphs.length * glyphGap;
+          columns[index] = nextColumn;
+        }
       });
+
+      context.globalAlpha = 1;
+      context.shadowBlur = 0;
       frame = window.requestAnimationFrame(draw);
     };
 
@@ -71,8 +124,12 @@ export function MatrixBackground() {
       }
     };
     const onMotionChange = () => {
-      if (reducedMotion.matches) stop();
-      else start();
+      if (reducedMotion.matches) {
+        stop();
+        paintBackground();
+      } else {
+        start();
+      }
     };
     const onVisibilityChange = () => {
       if (document.visibilityState === "visible") start();
@@ -83,7 +140,7 @@ export function MatrixBackground() {
     window.addEventListener("resize", resize, { passive: true });
     reducedMotion.addEventListener("change", onMotionChange);
     document.addEventListener("visibilitychange", onVisibilityChange);
-    if (visibility === "visible" && !reducedMotion.matches) start();
+    if (!reducedMotion.matches && document.visibilityState === "visible") start();
 
     return () => {
       stop();

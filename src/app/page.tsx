@@ -10,7 +10,7 @@ import {
   navigation,
   personal,
   projects,
-  skills,
+  skillGroups,
 } from "@/data/portfolio";
 
 function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
@@ -50,8 +50,7 @@ function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <a className="brand" href="#home" aria-label={`${personal.name}, home`}>
-          <span className="brand-mark">S<span>.</span></span>
-          <span className="brand-name">shohan<span>.dev</span></span>
+          <span className="brand-name">ShohanAlfaz</span>
         </a>
         <button
           className="menu-toggle"
@@ -66,9 +65,6 @@ function SiteHeader() {
           {navigation.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
           ))}
-          <a className="nav-contact" href="#contact" onClick={() => setMenuOpen(false)}>
-            Let&apos;s talk <ArrowIcon diagonal />
-          </a>
         </nav>
       </div>
     </header>
@@ -82,24 +78,27 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
         <Image
           className="project-image"
           src={project.image}
-          alt={`${project.name} project preview placeholder`}
+          alt={`${project.name} illustrative preview placeholder, not a project screenshot`}
           width={900}
           height={480}
         />
         <span className="project-number">0{index + 1}</span>
+        <span className="project-preview-label">Illustrative preview</span>
       </div>
       <div className="project-content">
         <p className="project-category">{project.category}</p>
         <h3>{project.name}</h3>
         <p className="project-title">{project.title}</p>
         <p className="project-description">{project.description}</p>
-        <ul className="tag-list" aria-label={`${project.name} technologies`}>
-          {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
-        </ul>
+        {project.technologies.length > 0 ? (
+          <ul className="tag-list" aria-label={`${project.name} technologies`}>
+            {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+          </ul>
+        ) : <p className="project-stack-placeholder">Verified technology stack to be added</p>}
         <div className="project-links">
           {project.liveUrl ? (
             <a href={project.liveUrl} target="_blank" rel="noreferrer">Live demo <ArrowIcon diagonal /></a>
-          ) : <span className="link-placeholder">Live demo <span>coming soon</span></span>}
+          ) : <span className="link-placeholder">Live demo <span>add link</span></span>}
           {project.githubUrl ? (
             <a href={project.githubUrl} target="_blank" rel="noreferrer">GitHub <ArrowIcon diagonal /></a>
           ) : <span className="link-placeholder">GitHub <span>add link</span></span>}
@@ -118,20 +117,26 @@ export default function Home() {
         <main>
           <section className="hero section-wrap" id="home">
             <div className="hero-copy">
-              <p className="eyebrow"><span />AVAILABLE FOR OPPORTUNITIES</p>
-              <h1>Building the web,<br />with <span>purpose.</span></h1>
+              <p className="eyebrow"><span />WELCOME TO MY DIGITAL SPACE</p>
+              <h1 className="hero-name">
+                <span className="hero-name-line">{personal.name.split(" ").slice(0, 1).join(" ")}</span>
+                <span className="hero-name-accent">
+                  {personal.name.split(" ").slice(1).join(" ")}
+                </span>
+              </h1>
+              <p className="hero-role">{personal.role}</p>
               <p className="hero-intro">
-                Hey, I&apos;m <strong>{personal.name}</strong> — a {personal.role.toLowerCase()} shaping thoughtful,
-                modern digital experiences from Dhaka, Bangladesh.
+                I build responsive web applications and e-commerce experiences using React.js, Next.js, and TypeScript.
+                I enjoy solving practical problems and creating clean, meaningful digital experiences.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#projects">View projects <ArrowIcon /></a>
-                <a className="button button-secondary" href={personal.cvDownloadUrl} download>
+                <a className="button button-primary" href="#projects">View Projects <ArrowIcon /></a>
+                <a className="button button-secondary" href={personal.cvDownloadUrl} download="Shohan_Hossain_Alfaz_CV.pdf">
                   Download CV <span className="download-icon" aria-hidden="true">↓</span>
                 </a>
               </div>
               <div className="hero-meta">
-                <span><i className="status-dot" /> Open to learn &amp; collaborate</span>
+                <span><i className="status-dot" /> Web development · cybersecurity learning</span>
                 <span className="meta-divider" />
                 <span>ULAB · CSE</span>
               </div>
@@ -160,47 +165,117 @@ export default function Home() {
           </section>
 
           <section className="about section-wrap section-block" id="about">
-            <SectionHeading eyebrow="A LITTLE ABOUT ME" title="Curious by nature." />
+            <SectionHeading eyebrow="BEYOND THE BUILD" title="A little about me." />
             <div className="about-grid">
               <div className="about-copy">
                 <p className="about-lead">
-                  I&apos;m a Computer Science student who loves turning ideas into <span>useful, well-crafted web experiences.</span>
+                  I&apos;m a developer focused on turning ideas into <span>useful, well-crafted web experiences.</span>
                 </p>
                 <p>
-                  Currently studying at the University of Liberal Arts Bangladesh (ULAB), I&apos;m growing my skills across
-                  the full stack — from crisp, accessible interfaces to the systems that power them. Outside of web
-                  development, I&apos;m exploring cybersecurity and how to build with care.
+                  I enjoy building for the web across frontend and full-stack development, with a particular interest in
+                  clean interfaces and e-commerce. I&apos;m also exploring cybersecurity as part of my ongoing learning.
                 </p>
-                <a className="text-link" href="#contact">A little more about working together <ArrowIcon /></a>
               </div>
               <div className="about-stat-grid">
-                <div className="stat-card"><span className="stat-index">01 / NOW</span><strong>Full-stack<br />development</strong><span>My main focus</span></div>
-                <div className="stat-card"><span className="stat-index">02 / NEXT</span><strong>Cybersecurity<br />curiosity</strong><span>Learning in progress</span></div>
-                <div className="stat-card stat-wide"><span className="stat-index">03 / BASED IN</span><strong>Dhaka, Bangladesh</strong><span>Studying at ULAB · CSE</span></div>
+                <div className="stat-card"><span className="stat-index">01 / FOCUS</span><strong>Web application<br />development</strong><span>Primary professional focus</span></div>
+                <div className="stat-card"><span className="stat-index">02 / LEARNING</span><strong>Cybersecurity</strong><span>Ongoing interest</span></div>
+                <div className="stat-card stat-wide"><span className="stat-index">03 / BASED IN</span><strong>Dhaka, Bangladesh</strong><span>University of Liberal Arts Bangladesh</span></div>
               </div>
             </div>
-          </section>
 
-          <section className="skills section-wrap section-block" id="skills">
-            <SectionHeading
-              eyebrow="MY TOOLKIT"
-              title="Tools for the build."
-              description="A growing, hands-on toolkit for building and shipping thoughtful web experiences."
-            />
-            <div className="skills-layout">
-              <div className="skills-lead-card">
-                <span className="skill-bracket">[ 01 — 15 ]</span>
-                <div className="skill-orb" aria-hidden="true"><span>&lt;/&gt;</span></div>
-                <h3>Curiosity is<br />part of the stack.</h3>
-                <p>Learning, testing, and improving with every build.</p>
-                <span className="skills-card-footer"><i /> CURRENTLY LEARNING</span>
-              </div>
-              <div className="skill-pills">
-                {skills.map((skill, index) => (
-                  <span className="skill-pill" key={skill}>
-                    <span className="skill-count">{String(index + 1).padStart(2, "0")}</span>{skill}
-                  </span>
-                ))}
+            <div className="about-subsections">
+              <section className="about-subsection">
+                <div className="subsection-heading">
+                  <p className="eyebrow"><span />MY TOOLKIT</p>
+                  <h3>Technical skills</h3>
+                </div>
+                <div className="skill-groups">
+                  {skillGroups.map((group) => (
+                    <article className="skill-group" key={group.name}>
+                      <h4>{group.name}</h4>
+                      <ul className="tag-list" aria-label={`${group.name} skills`}>
+                        {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                      </ul>
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section className="about-subsection">
+                <div className="subsection-heading">
+                  <p className="eyebrow"><span />EDUCATION</p>
+                  <h3>Learning with purpose.</h3>
+                </div>
+                <article className="education-card">
+                  <div className="education-top">
+                    <span className="education-logo">ULAB<span>.</span></span>
+                    <span className="date-chip">{education.period}</span>
+                  </div>
+                  <p className="card-eyebrow">BACHELOR&apos;S DEGREE</p>
+                  <h4>{education.degree}</h4>
+                  <p className="muted-copy">{education.institution}</p>
+                  <div className="grade-line"><span>{education.detail}</span><i /></div>
+                </article>
+              </section>
+
+              <section className="about-subsection">
+                <div className="subsection-heading">
+                  <p className="eyebrow"><span />AREAS I CAN SUPPORT</p>
+                  <h3>Services</h3>
+                </div>
+                <div className="services-grid">
+                  <article className="service-card">
+                    <span className="service-index">01 / WEB</span>
+                    <h3>Responsive websites</h3>
+                    <p>Mobile-friendly websites with clear, considered layouts.</p>
+                  </article>
+                  <article className="service-card">
+                    <span className="service-index">02 / UI</span>
+                    <h3>Frontend development</h3>
+                    <p>Interactive interfaces built with modern frontend tools.</p>
+                  </article>
+                  <article className="service-card">
+                    <span className="service-index">03 / APP</span>
+                    <h3>Basic full-stack apps</h3>
+                    <p>Web application foundations across frontend and backend.</p>
+                  </article>
+                </div>
+              </section>
+
+              <div className="experience-grid about-subsection">
+                <section className="timeline-column">
+                  <div className="subsection-heading">
+                    <p className="eyebrow"><span />COMMUNITY</p>
+                    <h3>Experience &amp; activities</h3>
+                  </div>
+                  <div className="activity-list">
+                    {activities.map((activity) => (
+                      <article className="activity-row" key={activity.name}>
+                        <span className="activity-marker" />
+                        <div>
+                          <span className="activity-type">{activity.type}</span>
+                          <h4>{activity.name}</h4>
+                          {activity.detail && <p>{activity.detail}</p>}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+                <section className="learning-column">
+                  <div className="subsection-heading">
+                    <p className="eyebrow"><span />ALWAYS LEARNING</p>
+                    <h3>Training &amp; learning</h3>
+                  </div>
+                  <div className="learning-list">
+                    {learning.map((item, index) => (
+                      <article className="learning-card" key={item.name}>
+                        <span className="learning-index">0{index + 1}</span>
+                        <div><h4>{item.name}</h4><p>{item.provider}</p></div>
+                        <span className="learning-status">{item.status}</span>
+                      </article>
+                    ))}
+                  </div>
+                </section>
               </div>
             </div>
           </section>
@@ -210,50 +285,12 @@ export default function Home() {
               <SectionHeading
                 eyebrow="SELECTED WORK"
                 title="Ideas, in progress."
-                description="A few concepts and builds across marketplaces, e-commerce, and social impact."
+                description="Four web projects across marketplaces, nonprofit platforms, and e-commerce."
               />
               <span className="projects-count">04 <span>PROJECTS</span></span>
             </div>
             <div className="project-grid">
               {projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} />)}
-            </div>
-          </section>
-
-          <section className="experience section-wrap section-block" id="experience">
-            <SectionHeading eyebrow="THE JOURNEY SO FAR" title="Learning by doing." />
-            <div className="experience-grid">
-              <div className="timeline-column">
-                <h3 className="column-title"><span className="column-icon">◎</span> Education</h3>
-                <article className="education-card">
-                  <div className="education-top"><span className="education-logo">ULAB<span>.</span></span><span className="date-chip">{education.period}</span></div>
-                  <p className="card-eyebrow">BACHELOR&apos;S DEGREE</p>
-                  <h4>{education.degree}</h4>
-                  <p className="muted-copy">{education.institution}</p>
-                  <div className="grade-line"><span>{education.detail}</span><i /></div>
-                </article>
-                <h3 className="column-title activity-heading"><span className="column-icon">↗</span> Leadership &amp; volunteering</h3>
-                <div className="activity-list">
-                  {activities.map((activity) => (
-                    <article className="activity-row" key={activity.name}>
-                      <span className="activity-marker" />
-                      <div><span className="activity-type">{activity.type}</span><h4>{activity.name}</h4><p>{activity.detail}</p></div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-              <div className="learning-column">
-                <h3 className="column-title"><span className="column-icon">✳</span> Training &amp; learning</h3>
-                <div className="learning-list">
-                  {learning.map((item, index) => (
-                    <article className="learning-card" key={item.name}>
-                      <span className="learning-index">0{index + 1}</span>
-                      <div><h4>{item.name}</h4><p>{item.provider}</p></div>
-                      <span className="learning-status">{item.status}</span>
-                    </article>
-                  ))}
-                </div>
-                <div className="learning-note"><span>↗</span><p>Always making room for the next thing to learn — especially where <strong>technology and trust</strong> meet.</p></div>
-              </div>
             </div>
           </section>
 
@@ -263,13 +300,18 @@ export default function Home() {
               <div className="contact-copy">
                 <p className="eyebrow"><span /> HAVE A GOOD ONE IN MIND?</p>
                 <h2>Let&apos;s make<br />something <span>matter.</span></h2>
-                <p>I&apos;m always happy to talk about web projects, ideas, or what I&apos;m learning. Drop me a line.</p>
-                <a className="button button-primary contact-button" href={`mailto:${personal.email}`}>
-                  Say hello <ArrowIcon diagonal />
-                </a>
+                <p>For web development opportunities, project conversations, or a quick hello, send me a message.</p>
+                {personal.email
+                  ? <a className="button button-primary contact-button" href={`mailto:${personal.email}`}>Say hello <ArrowIcon diagonal /></a>
+                  : <span className="button button-primary button-disabled" aria-disabled="true">Add email to enable contact</span>}
               </div>
               <div className="contact-details">
-                <div><span className="detail-label">EMAIL</span><a href={`mailto:${personal.email}`}>{personal.email}</a></div>
+                <div>
+                  <span className="detail-label">EMAIL</span>
+                  {personal.email
+                    ? <a href={`mailto:${personal.email}`}>{personal.email}</a>
+                    : <span className="contact-placeholder">Add your email in portfolio.ts</span>}
+                </div>
                 <div><span className="detail-label">LOCATION</span><p>{personal.location}</p></div>
                 <div className="social-links">
                   {personal.links.github
@@ -287,7 +329,7 @@ export default function Home() {
           </section>
         </main>
         <footer className="site-footer section-wrap">
-          <a className="footer-brand" href="#home">shohan<span>.dev</span></a>
+          <a className="footer-brand" href="#home">ShohanAlfaz</a>
           <p>Designed &amp; built with care by Shohan Hossain Alfaz.</p>
           <a href="#home" className="back-top">BACK TO TOP ↑</a>
         </footer>

@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000). Run `npm run typecheck` for
 
 ## Personalize
 
-- Update contact details, social profiles, project URLs, and portfolio content in [`src/data/portfolio.ts`](./src/data/portfolio.ts).
+- Update contact details, social profiles, project URLs, verified project descriptions and technology stacks, and activity details in [`src/data/portfolio.ts`](./src/data/portfolio.ts).
 - Replace the preview artwork in `public/projects/` with your project screenshots and update each image path in the portfolio data.
 - Put your PDF at `public/shohan-hossain-alfaz-cv.pdf`, then set `cvDownloadUrl` in the portfolio data to `/shohan-hossain-alfaz-cv.pdf`. Until then, the download button serves the clearly marked placeholder instructions.
 

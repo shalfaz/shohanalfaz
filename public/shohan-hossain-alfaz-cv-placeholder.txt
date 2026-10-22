@@ -1,7 +1,0 @@
-CV file placeholder
-
-Replace this file with your real PDF named:
-public/shohan-hossain-alfaz-cv.pdf
-
-Then update cvDownloadUrl in src/data/portfolio.ts to:
-/shohan-hossain-alfaz-cv.pdf

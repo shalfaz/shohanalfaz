@@ -3,51 +3,51 @@ export const personal = {
   initials: "SHA",
   role: "Junior Full-Stack Web Developer",
   location: "Dhaka, Bangladesh",
-  email: "your-email@example.com",
-  cvDownloadUrl: "/shohan-hossain-alfaz-cv-placeholder.txt",
+  email: "sh.alfaz.dev@gmail.com",
+  cvDownloadUrl: "/Shohan_Hossain_Alfaz_CV.pdf",
   links: {
-    portfolio: "",
-    linkedin: "",
-    github: "",
+    portfolio: "https://shohanalfaz.vercel.app/",
+    linkedin: "https://www.linkedin.com/in/shohan-hossain-alfaz-73a575266",
+    github: "https://github.com/shalfaz",
   },
 } as const;
 
 export const navigation = [
+  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
-export const skills = [
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "React.js",
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "REST APIs",
-  "JWT",
-  "Git",
-  "GitHub",
-  "Figma",
+export const skillGroups = [
+  { name: "Frontend", skills: ["HTML5", "CSS3", "JavaScript", "React.js", "TypeScript", "Tailwind CSS"] },
+  { name: "Backend", skills: ["Next.js", "Node.js", "Express.js", "REST APIs", "JWT"] },
+  { name: "Database", skills: ["MongoDB"] },
+  { name: "Development tools", skills: ["Git", "GitHub", "WordPress", "Figma"] },
+  { name: "Languages", skills: ["Bangla (Native)", "English (IELTS 6.0, 2023)"] },
 ] as const;
 
-export const projects = [
+type PortfolioProject = {
+  name: string;
+  category: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  liveUrl: string;
+  githubUrl: string;
+};
+
+export const projects: PortfolioProject[] = [
   {
     name: "TaskAnt",
     category: "MARKETPLACE",
     title: "On-Demand Task & Service Marketplace",
     description:
-      "A service marketplace concept connecting people who need a task done with local helpers ready to take it on.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
+      "A full-stack task marketplace with authentication, database integration, and APIs for posting, bidding, messaging, and reviews.",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
     image: "/projects/taskant.svg",
-    liveUrl: "",
+    liveUrl: "https://taskant.vercel.app/",
     githubUrl: "",
   },
   {
@@ -55,10 +55,10 @@ export const projects = [
     category: "SOCIAL IMPACT",
     title: "NGO & Donation Platform",
     description:
-      "A thoughtful digital home for a nonprofit, bringing its mission, community programs, and ways to support together.",
-    technologies: ["React", "Node.js", "Express.js", "MongoDB"],
+      "A responsive NGO platform with donation campaigns, dynamic content, and separate admin and volunteer authentication panels.",
+    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
     image: "/projects/one-world-hands.svg",
-    liveUrl: "",
+    liveUrl: "https://one-world-hands.vercel.app/",
     githubUrl: "",
   },
   {
@@ -66,10 +66,10 @@ export const projects = [
     category: "E-COMMERCE",
     title: "Cosmetics E-commerce Platform",
     description:
-      "A clean beauty shopping experience designed to make discovering and browsing cosmetics feel effortless.",
-    technologies: ["Next.js", "JavaScript", "Tailwind CSS"],
+      "A cosmetics e-commerce platform with product browsing, search, filtering, cart, database integration, and payment functionality.",
+    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
     image: "/projects/looklify.svg",
-    liveUrl: "",
+    liveUrl: "https://looklifybd.com/",
     githubUrl: "",
   },
   {
@@ -77,13 +77,13 @@ export const projects = [
     category: "E-COMMERCE",
     title: "Fashion & Heritage E-commerce Platform",
     description:
-      "An online showcase celebrating fashion and heritage, with a storefront that puts craft and culture front and center.",
-    technologies: ["React", "Node.js", "REST APIs"],
+      "A responsive e-commerce frontend for fashion and heritage, with product layouts and category navigation. Backend and payment integration are in development.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     image: "/projects/shilpalay.svg",
-    liveUrl: "",
+    liveUrl: "https://shilpalay.com/",
     githubUrl: "",
   },
-] as const;
+];
 
 export const education = {
   degree: "B.Sc. in Computer Science and Engineering",
@@ -96,22 +96,22 @@ export const education = {
 export const activities = [
   {
     name: "ULAB CSE Hackathon",
-    detail: "Joined a collaborative build challenge with the ULAB CSE community.",
+    detail: "Participant and team leader; led team collaboration on problem-solving, idea development, and project presentation.",
     type: "HACKATHON",
   },
   {
     name: "Idea Hunter 4.0",
-    detail: "Took part in an idea-generation experience focused on creative problem solving.",
+    detail: "Participant and team leader representing ULAB in a business and innovation competition.",
     type: "INNOVATION",
   },
   {
     name: "University Club Day 2025",
-    detail: "Connected with campus clubs and the wider university community.",
+    detail: "Event manager coordinating logistics, volunteers, and promotion.",
     type: "COMMUNITY",
   },
   {
     name: "Rotary International",
-    detail: "Volunteering and community involvement, 2018 — Present.",
+    detail: "Volunteer since 2018; contributed to health, education, and environmental awareness initiatives.",
     type: "VOLUNTEERING",
   },
 ] as const;
