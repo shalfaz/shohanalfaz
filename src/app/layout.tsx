@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Shohan Hossain Alfaz | Junior Web Developer",
   description:
     "Portfolio of Shohan Hossain Alfaz, a junior web developer building responsive React.js, Next.js, and TypeScript applications.",
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

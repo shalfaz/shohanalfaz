@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { personal, projects, skillGroups } from "@/data/portfolio";
+import { personal, projects } from "@/data/portfolio";
 
 export default function Home() {
   return (
@@ -17,40 +17,33 @@ export default function Home() {
             <Link className="button button-secondary" href="/contact">Contact Me</Link>
             <a className="button button-ghost" href={personal.cvDownloadUrl} download>Download CV <span>↓</span></a>
           </div>
-          <div className="hero-social-row">
-            <span>Find me on</span>
-            <a href={personal.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
-            <a href={personal.links.github} target="_blank" rel="noreferrer" aria-label="GitHub">GH</a>
-            <a href={`mailto:${personal.email}`} aria-label="Email Shohan">@</a>
+          <div className="hero-connect-row">
+            <div className="hero-social-row">
+              <span>Find me on</span>
+              <a href={personal.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span className="social-brand github-brand" aria-hidden="true" /></a>
+              <a href={personal.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span className="social-brand linkedin-brand" aria-hidden="true">in</span></a>
+              {personal.links.facebook ? <a href={personal.links.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><span className="social-brand facebook-brand" aria-hidden="true">f</span></a> : <span className="social-link-unavailable" title="Add your Facebook URL to personal.links.facebook" aria-label="Facebook URL not configured"><span className="social-brand facebook-brand" aria-hidden="true">f</span></span>}
+              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}`} target="_blank" rel="noopener noreferrer" aria-label="Compose email to Shohan"><span className="social-brand gmail-brand" aria-hidden="true">M</span></a>
+            </div>
+            <div className="hero-mini-stats" aria-label="Requested portfolio statistics needing verification">
+              <div><strong>2+</strong><span>Years experience</span></div>
+              <div><strong>20+</strong><span>Projects</span></div>
+              <div><strong>10+</strong><span>Client deals</span></div>
+            </div>
           </div>
         </div>
         <div className="hero-visual reference-visual" aria-label="Abstract developer workspace">
           <div className="visual-ring ring-one" />
           <div className="visual-ring ring-two" />
           <div className="visual-ring ring-three" />
-          <div className="developer-card">
-            <div className="developer-card-grid" />
-            <div className="developer-monogram">SHA<span>WEB.DEV</span></div>
+          <div className="developer-card profile-card">
+            <Image src="/herobanner.jpg" alt="Shohan Hossain Alfaz" fill priority sizes="(max-width: 760px) 88vw, 390px" className="profile-image" />
             <div className="developer-card-status"><i /> AVAILABLE FOR OPPORTUNITIES</div>
-            <div className="developer-card-code">
-              <span>01</span><p><b>const</b> developer = {"{"}</p>
-              <span>02</span><p>&nbsp;&nbsp;focus: <strong>&quot;modern web&quot;</strong>,</p>
-              <span>03</span><p>&nbsp;&nbsp;stack: <strong>&quot;React + Next.js&quot;</strong>,</p>
-              <span>04</span><p>&nbsp;&nbsp;craft: <strong>&quot;with care&quot;</strong></p>
-              <span>05</span><p>{"}"};</p>
-            </div>
           </div>
           <div className="tech-chip chip-react"><span>⚛</span> React.js</div>
           <div className="tech-chip chip-next"><span>N</span> Next.js</div>
           <div className="tech-chip chip-ts"><span>TS</span> TypeScript</div>
         </div>
-      </section>
-
-      <section className="section-wrap highlights reference-highlights" aria-label="Professional highlights">
-        <div><strong>Web Developer</strong><span>Primary professional role</span></div>
-        <div><strong>4 projects</strong><span>Featured portfolio work</span></div>
-        <div><strong>Dhaka</strong><span>Bangladesh</span></div>
-        <div><strong>React + Next.js</strong><span>Core development stack</span></div>
       </section>
 
       <section className="section-wrap section-block">
@@ -66,11 +59,6 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="section-wrap section-block skills-preview">
-        <div className="section-heading"><p className="eyebrow"><span />Capabilities</p><h2>Built with a modern web stack.</h2></div>
-        <div className="skill-preview-grid">{skillGroups.map((group) => <article key={group.name}><span>{group.name}</span><div>{group.skills.slice(0, 6).map((skill) => <b key={skill}>{skill}</b>)}</div></article>)}</div>
       </section>
 
       <section className="section-wrap contact-banner">

@@ -10,6 +10,7 @@ export const personal = {
     portfolio: "https://shohanalfaz.vercel.app/",
     linkedin: "https://www.linkedin.com/in/shohan-hossain-alfaz-73a575266",
     github: "https://github.com/shalfaz",
+    facebook: "",
   },
 } as const;
 
