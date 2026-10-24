@@ -1,7 +1,8 @@
 export const personal = {
   name: "Shohan Hossain Alfaz",
   initials: "SHA",
-  role: "Junior Full-Stack Web Developer",
+  role: "Junior Web Developer",
+  summary: "Aspiring Web Developer with hands-on experience building responsive web applications and e-commerce platforms using React.js, Next.js, and TypeScript. Passionate about creating impactful digital solutions and contributing to innovative development teams.",
   location: "Dhaka, Bangladesh",
   email: "sh.alfaz.dev@gmail.com",
   cvDownloadUrl: "/Shohan_Hossain_Alfaz_CV.pdf",
@@ -13,18 +14,19 @@ export const personal = {
 } as const;
 
 export const navigation = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Skills", href: "/skills" },
+  { label: "Projects", href: "/projects" },
+  { label: "Certificates", href: "/certificates" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const skillGroups = [
   { name: "Frontend", skills: ["HTML5", "CSS3", "JavaScript", "React.js", "TypeScript", "Tailwind CSS"] },
-  { name: "Backend", skills: ["Next.js", "Node.js", "Express.js", "REST APIs", "JWT"] },
-  { name: "Database", skills: ["MongoDB"] },
-  { name: "Development tools", skills: ["Git", "GitHub", "WordPress", "Figma"] },
-  { name: "Languages", skills: ["Bangla (Native)", "English (IELTS 6.0, 2023)"] },
+  { name: "Backend & Database", skills: ["Next.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "Supabase", "Firebase Auth", "JWT"] },
+  { name: "Tools", skills: ["Git", "GitHub", "WordPress", "Figma"] },
 ] as const;
 
 type PortfolioProject = {
@@ -66,7 +68,7 @@ export const projects: PortfolioProject[] = [
     category: "E-COMMERCE",
     title: "Cosmetics E-commerce Platform",
     description:
-      "A cosmetics e-commerce platform with product browsing, search, filtering, cart, database integration, and payment functionality.",
+      "A cosmetics e-commerce platform with product browsing, search and filtering, a shopping cart, database integration, and payment functionality.",
     technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
     image: "/projects/looklify.svg",
     liveUrl: "https://looklifybd.com/",
@@ -91,6 +93,14 @@ export const education = {
   shortInstitution: "ULAB",
   detail: "CGPA 3.67 / 4.00 · Ongoing",
   period: "2024 — Present",
+} as const;
+
+export const experience = {
+  role: "Web Developer",
+  company: "Looklify | E-commerce Platform",
+  location: "Dhaka, Bangladesh",
+  period: "May 2026 — Present",
+  detail: "Contributing to product browsing, search and filtering, shopping cart, database integration, and payment functionality for an e-commerce platform.",
 } as const;
 
 export const activities = [
