@@ -4,7 +4,7 @@ import { personal, projects } from "@/data/portfolio";
 
 export default function Home() {
   return (
-    <>
+    <div className="home-page">
       <section className="hero reference-hero section-wrap">
         <div className="hero-copy reference-copy">
           <p className="availability-pill"><span />OPEN TO WEB DEVELOPMENT OPPORTUNITIES</p>
@@ -46,16 +46,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-wrap section-block">
+      <section className="section-wrap section-block projects-page">
         <div className="section-heading-row">
-          <div className="section-heading"><p className="eyebrow"><span />Selected work</p><h2>Featured projects</h2><p>A selection of web platforms built around practical user needs.</p></div>
+          <div className="section-heading"><p className="eyebrow"><span />Selected work</p><h2>MY LATEST PROJECTS</h2><p>A selection of web platforms built around practical user needs.</p></div>
           <Link className="text-link" href="/projects">View all projects →</Link>
         </div>
-        <div className="project-grid featured-grid">
+        <div className="project-grid gallery-grid projects-masonry">
           {projects.map((project, index) => (
             <article className="project-card" key={project.name}>
-              <div className="project-image-wrap"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 700px) 100vw, 50vw" /><span>0{index + 1}</span></div>
-              <div className="project-content"><p className="project-category">{project.category}</p><h3>{project.name}</h3><p>{project.title}</p><ul className="tag-list">{project.technologies.slice(0, 4).map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-links">{project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer">Live demo ↗</a>}{project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a>}</div></div>
+              <div className="project-image-wrap">
+                <Image
+                  className="project-mockup"
+                  src={project.image}
+                  alt={`${project.name} laptop mockup`}
+                  fill
+                  sizes="(max-width: 760px) 100vw, 50vw"
+                />
+                <span>0{index + 1}</span>
+              </div>
+              <div className="project-content">
+                <p className="project-category">{project.category}</p>
+                <h2>{project.name}</h2>
+                <p className="project-title">{project.title}</p>
+                <p className="project-description">{project.description}</p>
+                <ul className="tag-list">
+                  {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+                </ul>
+                {(project.liveUrl || project.githubUrl) && (
+                  <div className="project-links">
+                    {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">View Project ↗</a>}
+                    {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub ↗</a>}
+                  </div>
+                )}
+              </div>
             </article>
           ))}
         </div>
@@ -65,6 +88,6 @@ export default function Home() {
         <div><p className="eyebrow"><span />Start a conversation</p><h2>Have a project in mind?</h2><p>Let&apos;s discuss how thoughtful web development can bring it to life.</p></div>
         <Link className="button button-primary" href="/contact">Contact Me →</Link>
       </section>
-    </>
+    </div>
   );
 }

@@ -43,36 +43,36 @@ type PortfolioProject = {
 
 export const projects: PortfolioProject[] = [
   {
+    name: "Looklify",
+    category: "E-COMMERCE",
+    title: "E-commerce Platform",
+    description:
+      "An e-commerce platform with product browsing, search, filtering, a shopping cart, database operations, and payment integration.",
+    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
+    image: "/looklify-mockup.png",
+    liveUrl: "https://looklifybd.com/",
+    githubUrl: "",
+  },
+  {
     name: "TaskAnt",
     category: "MARKETPLACE",
-    title: "On-Demand Task & Service Marketplace",
+    title: "Task Marketplace",
     description:
-      "A full-stack task marketplace with authentication, database integration, and APIs for posting, bidding, messaging, and reviews.",
+      "A task marketplace with task posting, bidding, messaging, reviews, REST APIs, database integration, and JWT-based authentication.",
     technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
-    image: "/projects/taskant.svg",
+    image: "/taskant-mockup.png",
     liveUrl: "https://taskant.vercel.app/",
     githubUrl: "",
   },
   {
     name: "One World Hands",
     category: "SOCIAL IMPACT",
-    title: "NGO & Donation Platform",
+    title: "NGO Platform",
     description:
-      "A responsive NGO platform with donation campaigns, dynamic content, and separate admin and volunteer authentication panels.",
+      "An NGO platform with donation campaigns, dynamic content, volunteer management, and separate admin and volunteer authentication panels.",
     technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
-    image: "/projects/one-world-hands.svg",
+    image: "/oneworldhands-mockup.png",
     liveUrl: "https://one-world-hands.vercel.app/",
-    githubUrl: "",
-  },
-  {
-    name: "Looklify",
-    category: "E-COMMERCE",
-    title: "Cosmetics E-commerce Platform",
-    description:
-      "A cosmetics e-commerce platform with product browsing, search and filtering, a shopping cart, database integration, and payment functionality.",
-    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
-    image: "/projects/looklify.svg",
-    liveUrl: "https://looklifybd.com/",
     githubUrl: "",
   },
   {
@@ -80,9 +80,9 @@ export const projects: PortfolioProject[] = [
     category: "E-COMMERCE",
     title: "Fashion & Heritage E-commerce Platform",
     description:
-      "A responsive e-commerce frontend for fashion and heritage, with product layouts and category navigation. Backend and payment integration are in development.",
+      "A responsive e-commerce frontend for fashion and heritage products, featuring product layouts and category-based navigation.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-    image: "/projects/shilpalay.svg",
+    image: "/shilpalay-mockup.png",
     liveUrl: "https://shilpalay.com/",
     githubUrl: "",
   },
@@ -155,23 +155,5 @@ export const activities = [
     name: "Rotary International",
     detail: "Volunteer since 2018; contributed to health, education, and environmental awareness initiatives.",
     type: "VOLUNTEERING",
-  },
-] as const;
-
-export const learning = [
-  {
-    name: "Cybersecurity Training",
-    provider: "Mehedi Shakeel Academy",
-    status: "Ongoing",
-  },
-  {
-    name: "Frontend Web Development",
-    provider: "Hablu Programmer",
-    status: "Self-paced",
-  },
-  {
-    name: "Bangladesh Summit",
-    provider: "Google for Education",
-    status: "Two-day workshop",
   },
 ] as const;
