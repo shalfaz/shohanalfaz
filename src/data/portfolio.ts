@@ -88,21 +88,52 @@ export const projects: PortfolioProject[] = [
   },
 ];
 
-export const education = {
-  degree: "B.Sc. in Computer Science and Engineering",
-  institution: "University of Liberal Arts Bangladesh",
-  shortInstitution: "ULAB",
-  detail: "CGPA 3.67 / 4.00 · Ongoing",
-  period: "2024 — Present",
-} as const;
+export const education = [
+  {
+    institution: "University of Liberal Arts Bangladesh (ULAB), Dhaka",
+    degree: "B.Sc. in Computer Science and Engineering",
+    duration: "2024 – Present",
+    grade: "CGPA: 3.67 / 4.00 (Ongoing)",
+    startYear: 2024,
+    current: true,
+  },
+  {
+    institution: "North South University (NSU), Dhaka",
+    degree: "Bachelor of Business Administration",
+    duration: "2023 – 2023",
+    grade: "CGPA: 3.12 / 4.00 (Incomplete)",
+    startYear: 2023,
+    current: false,
+  },
+  {
+    institution: "BAF Shaheen College, Dhaka (Bangladesh Air Force)",
+    degree: "Higher Secondary Certificate (HSC), Science",
+    duration: "2020 – 2022",
+    grade: "GPA: 5.00 / 5.00",
+    startYear: 2020,
+    current: false,
+  },
+  {
+    institution: "Pabna Zilla School, Pabna",
+    degree: "Secondary School Certificate (SSC), Science",
+    duration: "2011 – 2020",
+    grade: "GPA: 5.00 / 5.00",
+    startYear: 2011,
+    current: false,
+  },
+] as const;
 
-export const experience = {
-  role: "Web Developer",
-  company: "Looklify | E-commerce Platform",
-  location: "Dhaka, Bangladesh",
-  period: "May 2026 — Present",
-  detail: "Contributing to product browsing, search and filtering, shopping cart, database integration, and payment functionality for an e-commerce platform.",
-} as const;
+export const experiences = [
+  {
+    role: "Web Developer",
+    company: "Looklify",
+    project: "E-commerce Platform",
+    period: "May 2026 — Present",
+    startDate: "2026-05",
+    detail: "Contributing to product browsing, search and filtering, shopping cart, database integration, and payment functionality for an e-commerce platform.",
+    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
+  },
+] as const;
 
 export const activities = [
   {

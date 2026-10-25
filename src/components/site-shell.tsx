@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navigation, personal } from "@/data/portfolio";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [theme, setTheme] = useState<"night" | "day">("night");
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("portfolio-theme");
@@ -16,6 +17,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     setTheme(next);
     document.documentElement.dataset.theme = next;
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   const toggleTheme = () => {
     const next = theme === "night" ? "day" : "night";
@@ -27,16 +32,21 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="app-shell">
       <div className="ambient-grid" aria-hidden="true" />
-      <header className="site-header">
+      <header className="site-header" onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          setMenuOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      }}>
         <div className="header-inner">
           <Link className="brand" href="/" aria-label="ShohanAlfaz home">ShohanAlfaz</Link>
-          <button className="menu-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
-            <span /><span />
+          <button ref={menuButtonRef} className="menu-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-controls="primary-navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+            <span aria-hidden="true" /><span aria-hidden="true" />
           </button>
-          <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Primary navigation">
+          <nav id="primary-navigation" className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Primary navigation">
             {navigation.map((item) => {
               const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-              return <Link key={item.href} href={item.href} className={active ? "active" : undefined} onClick={() => setMenuOpen(false)}>{item.label}</Link>;
+              return <Link key={item.href} href={item.href} className={active ? "active" : undefined} aria-current={active ? "page" : undefined} onClick={() => setMenuOpen(false)}>{item.label}</Link>;
             })}
           </nav>
           <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "night" ? "day" : "night"} mode`} title={`${theme} mode`}>
