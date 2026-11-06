@@ -59,7 +59,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <footer className="site-footer">
         <div className="footer-inner">
           <div><Link className="footer-brand" href="/">ShohanAlfaz</Link><p>Junior Web Developer in Dhaka, Bangladesh.</p></div>
-          <div className="footer-links"><a href={`mailto:${personal.email}`}>Email</a><a href={personal.links.github} target="_blank" rel="noreferrer">GitHub</a><a href={personal.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></div>
+          <div className="footer-links"><a href={`mailto:${personal.email}`}>Email</a><a href={personal.links.github} target="_blank" rel="noopener noreferrer">GitHub</a><a href={personal.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
           <p className="copyright">© {new Date().getFullYear()} Shohan Hossain Alfaz</p>
         </div>
       </footer>

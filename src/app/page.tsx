@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { SiGithub, SiGmail } from "react-icons/si";
 import { personal, projects } from "@/data/portfolio";
 
 export default function Home() {
@@ -20,10 +22,9 @@ export default function Home() {
           <div className="hero-connect-row">
             <div className="hero-social-row">
               <span>Find me on</span>
-              <a href={personal.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span className="social-brand github-brand" aria-hidden="true" /></a>
-              <a href={personal.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span className="social-brand linkedin-brand" aria-hidden="true">in</span></a>
-              {personal.links.facebook ? <a href={personal.links.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><span className="social-brand facebook-brand" aria-hidden="true">f</span></a> : <span className="social-link-unavailable" title="Add your Facebook URL to personal.links.facebook" aria-label="Facebook URL not configured"><span className="social-brand facebook-brand" aria-hidden="true">f</span></span>}
-              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}`} target="_blank" rel="noopener noreferrer" aria-label="Compose email to Shohan"><span className="social-brand gmail-brand" aria-hidden="true">M</span></a>
+              <a href={personal.links.github} target="_blank" rel="noopener noreferrer" aria-label="Visit Shohan on GitHub" title="GitHub"><SiGithub className="social-brand github-brand" aria-hidden="true" /></a>
+              <a href={personal.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Visit Shohan on LinkedIn" title="LinkedIn"><FaLinkedinIn className="social-brand linkedin-brand" aria-hidden="true" /></a>
+              <a href={`mailto:${personal.email}`} aria-label={`Email Shohan at ${personal.email}`} title="Email Shohan"><SiGmail className="social-brand gmail-brand" aria-hidden="true" /></a>
             </div>
             <div className="hero-mini-stats" aria-label="Requested portfolio statistics needing verification">
               <div><strong>2+</strong><span>Years experience</span></div>
@@ -52,7 +53,7 @@ export default function Home() {
           <Link className="text-link" href="/projects">View all projects →</Link>
         </div>
         <div className="project-grid gallery-grid projects-masonry">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <article className="project-card" key={project.name}>
               <div className="project-image-wrap">
                 <Image
@@ -62,7 +63,6 @@ export default function Home() {
                   fill
                   sizes="(max-width: 760px) 100vw, 50vw"
                 />
-                <span>0{index + 1}</span>
               </div>
               <div className="project-content">
                 <p className="project-category">{project.category}</p>
