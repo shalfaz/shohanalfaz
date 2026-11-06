@@ -8,9 +8,8 @@ export const personal = {
   cvDownloadUrl: "/Shohan_Hossain_Alfaz_CV.pdf",
   links: {
     portfolio: "https://shohanalfaz.vercel.app/",
-    linkedin: "https://www.linkedin.com/in/shohan-hossain-alfaz-73a575266",
+    linkedin: "https://www.linkedin.com/in/shohan-hossain-alfaz-2bb5a8449",
     github: "https://github.com/shalfaz",
-    facebook: "",
   },
 } as const;
 
@@ -54,25 +53,25 @@ export const projects: PortfolioProject[] = [
     githubUrl: "",
   },
   {
-    name: "TaskAnt",
-    category: "MARKETPLACE",
-    title: "Task Marketplace",
-    description:
-      "A task marketplace with task posting, bidding, messaging, reviews, REST APIs, database integration, and JWT-based authentication.",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
-    image: "/taskant-mockup.png",
-    liveUrl: "https://taskant.vercel.app/",
-    githubUrl: "",
-  },
-  {
     name: "One World Hands",
     category: "SOCIAL IMPACT",
-    title: "NGO Platform",
+    title: "NGO & Donation Platform",
     description:
       "An NGO platform with donation campaigns, dynamic content, volunteer management, and separate admin and volunteer authentication panels.",
     technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
     image: "/oneworldhands-mockup.png",
     liveUrl: "https://one-world-hands.vercel.app/",
+    githubUrl: "",
+  },
+  {
+    name: "TaskAnt",
+    category: "MARKETPLACE",
+    title: "Local Task & Delivery Assistance Platform",
+    description:
+      "A task marketplace with task posting, bidding, messaging, reviews, REST APIs, database integration, and JWT-based authentication.",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
+    image: "/taskant-mockup.png",
+    liveUrl: "https://taskant.vercel.app/",
     githubUrl: "",
   },
   {
@@ -83,7 +82,7 @@ export const projects: PortfolioProject[] = [
       "A responsive e-commerce frontend for fashion and heritage products, featuring product layouts and category-based navigation.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     image: "/shilpalay-mockup.png",
-    liveUrl: "https://shilpalay.com/",
+    liveUrl: "https://shilpalay.vercel.app/",
     githubUrl: "",
   },
 ];

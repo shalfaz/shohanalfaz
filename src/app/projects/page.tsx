@@ -10,7 +10,7 @@ export default function ProjectsPage() {
         <p>A selection of digital products built to solve real needs, from commerce and task services to community impact.</p>
       </header>
       <div className="project-grid gallery-grid projects-masonry">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <article className="project-card" key={project.name}>
             <div className="project-image-wrap">
               <Image
@@ -20,7 +20,6 @@ export default function ProjectsPage() {
                 fill
                 sizes="(max-width: 760px) 100vw, 50vw"
               />
-              <span>0{index + 1}</span>
             </div>
             <div className="project-content">
               <p className="project-category">{project.category}</p>
