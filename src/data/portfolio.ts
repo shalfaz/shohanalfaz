@@ -42,14 +42,14 @@ type PortfolioProject = {
 
 export const projects: PortfolioProject[] = [
   {
-    name: "Looklify",
-    category: "E-COMMERCE",
-    title: "E-commerce Platform",
+    name: "TaskAnt",
+    category: "MARKETPLACE",
+    title: "Local Task & Delivery Assistance Platform",
     description:
-      "An e-commerce platform with product browsing, search, filtering, a shopping cart, database operations, and payment integration.",
-    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
-    image: "/looklify-mockup.png",
-    liveUrl: "https://looklifybd.com/",
+      "A task marketplace with task posting, bidding, messaging, reviews, REST APIs, database integration, and JWT-based authentication.",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
+    image: "/taskant-mockup.png",
+    liveUrl: "https://taskant.vercel.app/",
     githubUrl: "",
   },
   {
@@ -64,14 +64,14 @@ export const projects: PortfolioProject[] = [
     githubUrl: "",
   },
   {
-    name: "TaskAnt",
-    category: "MARKETPLACE",
-    title: "Local Task & Delivery Assistance Platform",
+    name: "Looklify",
+    category: "E-COMMERCE",
+    title: "E-commerce Platform",
     description:
-      "A task marketplace with task posting, bidding, messaging, reviews, REST APIs, database integration, and JWT-based authentication.",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"],
-    image: "/taskant-mockup.png",
-    liveUrl: "https://taskant.vercel.app/",
+      "An e-commerce platform with product browsing, search, filtering, a shopping cart, database operations, and payment integration.",
+    technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
+    image: "/looklify-mockup.png",
+    liveUrl: "https://looklifybd.com/",
     githubUrl: "",
   },
   {
@@ -91,7 +91,7 @@ export const education = [
   {
     institution: "University of Liberal Arts Bangladesh (ULAB), Dhaka",
     degree: "B.Sc. in Computer Science and Engineering",
-    duration: "2024 – Present",
+    duration: "2024 â€“ Present",
     grade: "CGPA: 3.67 / 4.00 (Ongoing)",
     startYear: 2024,
     current: true,
@@ -99,7 +99,7 @@ export const education = [
   {
     institution: "North South University (NSU), Dhaka",
     degree: "Bachelor of Business Administration",
-    duration: "2023 – 2023",
+    duration: "2023 â€“ 2023",
     grade: "CGPA: 3.12 / 4.00 (Incomplete)",
     startYear: 2023,
     current: false,
@@ -107,7 +107,7 @@ export const education = [
   {
     institution: "BAF Shaheen College, Dhaka (Bangladesh Air Force)",
     degree: "Higher Secondary Certificate (HSC), Science",
-    duration: "2020 – 2022",
+    duration: "2020 â€“ 2022",
     grade: "GPA: 5.00 / 5.00",
     startYear: 2020,
     current: false,
@@ -115,7 +115,7 @@ export const education = [
   {
     institution: "Pabna Zilla School, Pabna",
     degree: "Secondary School Certificate (SSC), Science",
-    duration: "2011 – 2020",
+    duration: "2011 â€“ 2020",
     grade: "GPA: 5.00 / 5.00",
     startYear: 2011,
     current: false,
@@ -127,7 +127,7 @@ export const experiences = [
     role: "Web Developer",
     company: "Looklify",
     project: "E-commerce Platform",
-    period: "May 2026 — Present",
+    period: "May 2026 â€” Present",
     startDate: "2026-05",
     detail: "Contributing to product browsing, search and filtering, shopping cart, database integration, and payment functionality for an e-commerce platform.",
     technologies: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
